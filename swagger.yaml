@@ -16,7 +16,7 @@ info:
     email: connect@qidigital.com
   version: 1.0.2
 servers:
-  - url: https://{serverName}.qigateway.net/v1
+  - url: https://{serverName}.qigateway.net
     variables:
       serverName:
         default: youcompanyname
