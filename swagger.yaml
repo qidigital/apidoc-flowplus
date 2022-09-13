@@ -19,7 +19,7 @@ servers:
   - url: https://{serverName}.qigateway.net
     variables:
       serverName:
-        default: youcompanyname
+        default: servername
         description: serverName assigned by the service provider
 paths:
   /v1/merchant:
