@@ -46,9 +46,7 @@ paths:
         '400':
           description: Bad request if any validation error
       security:
-        - BearerAuth:
-            - write:pets
-            - read:pets
+        - BearerAuth: []
   /v1/merchant/{merchantId}:
     parameters:
       - name: merchantId
@@ -197,6 +195,58 @@ paths:
         - BearerAuth:
             - write:pets
             - read:pets
+  /v1/webhook:
+    post:
+      tags:
+        - Webhook
+      summary: Create a new Webhook
+      description: One global webhook (without merchantId) and webhook for each merchantId can be configured.
+      operationId: addWebhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '400':
+          description: Bad request if any validation error
+      security:
+        - BearerAuth: []
+  /v1/webhook/{webhookId}:
+    get:
+      parameters:
+        - name: webhookId
+          in: path
+          description: WebhookId Id
+          required: true
+          schema:
+            type: string
+      tags:
+        - Webhook
+      summary: Get Webhook details
+      description: Get Webhook details
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'          
+        '400':
+          description: Bad request or Invalid Webhook Id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      security:
+        - BearerAuth: []
 components:
   schemas:
     Merchant:
@@ -319,6 +369,34 @@ components:
         gatewayUrl:
           type: string
           description: Gateway URL to accept crypto
+    Webhook:
+      required:
+        - object
+        - events
+        - url
+      type: object
+      properties:
+        object:
+          type: string
+          example: transacition
+        merchantId:
+          type: string
+          example: m_631343434
+        events:
+          type: array
+          items:
+            type: string
+            enum: [
+              transaction.created,
+              transaction.processed,
+              transaction.cancelled,
+              transaction.unconfirmed,
+              transaction.confirmed
+            ]
+            example: "transaction.created,transaction.confirmed"
+        url:
+          type: string
+          example: https://yourdomain.com/webhook/callback
     Status:
       type: object
       required:
@@ -365,3 +443,4 @@ components:
     BearerAuth:            # arbitrary name for the security scheme
       type: http
       scheme: bearer
+      bearerFormat: JWT
