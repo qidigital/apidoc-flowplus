@@ -369,6 +369,16 @@ components:
               type: string
               example: USD
               enum: [USD,EUR,GBP]
+        cryptoAmount:
+          type: object
+          properties:
+            value:
+              type: number
+              example: 810173
+            currency:
+              type: string
+              example: ETH
+              enum: [BTC,ETH,BCH]
         customer:
           type: object
           properties:
@@ -405,7 +415,7 @@ components:
       properties:
         object:
           type: string
-          example: transacition
+          example: transaction
         merchantId:
           type: string
           example: m_631343434
