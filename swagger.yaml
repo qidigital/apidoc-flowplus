@@ -215,8 +215,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Webhook'
-        '400':
-          description: Bad request if any validation error
       security:
         - BearerAuth: []
   /v1/webhook/{webhookId}:
@@ -272,6 +270,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Webhook'
+      security:
+        - BearerAuth: []
+  /v1/webhooks:
+    parameters:
+      - name: page
+        in: query
+        description: Page Number starting 0 to n
+        required: false
+        schema:
+          type: number
+      - name: pageSize
+        in: query
+        description: Number of records
+        required: false
+        schema:
+          type: number
+    get:
+      tags:
+        - Webhook
+      summary: Get All Webhook configured
+      description: Get All Webhook configured
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhooks'
       security:
         - BearerAuth: []
 components:
@@ -446,6 +472,22 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Error'
+    Webhooks:
+      type: object
+      properties:
+        object:
+          type: string
+          example: webhook
+        pageSize:
+          type: number
+          example: 10
+        page:
+          type: number
+          example: 1
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
     Error:
       type: object
       properties:
