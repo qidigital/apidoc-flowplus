@@ -1,12 +1,12 @@
 openapi: 3.0.3
 info:
-  title: Flow Plus Smart API doc
+  title: Smart API by Qi Digital
   description: |-
     # Overview
     Qi Digital is a blockchain focused technology company. We provide a suite of blockchain connected APIs for PSPs, Gateways and FinTechs.
     The Smart API is a fully hosted crypto payment processing solution and can be integrated with minimal effort.
     # Merchant Wallet
-    All merchants are required to have an active crypto ‘receiving’ wallet. This can be with any third-party provider.
+    All merchants are required to have an active crypto ‘receiving’ wallet. This can be with any third-party provider. It is recommended that a licensed or regulated crypto service provider is used.
     If a merchant does not have a crypto wallet, our partners can create one as part of their onboarding process.
     # PSP / Gateway Wallet
     Integrated partners may wish to have an omnibus wallet, where they collect all crypto funds on behalf of their merchant customers. There may be regulatory requirements for this service and Partners are advised to seek additional advice when holding client funds as these may differ to 'e-money' licensing.
