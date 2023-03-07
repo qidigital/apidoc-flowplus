@@ -21,6 +21,11 @@ servers:
       serverName:
         default: servername
         description: serverName assigned by the service provider
+  - url: https://{serverName}.coingateway.co
+    variables:
+      serverName:
+        default: servername
+        description: serverName assigned by the service provider
 paths:
   /v1/merchant:
     post:
