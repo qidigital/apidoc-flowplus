@@ -156,6 +156,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MerchantList'
+      security:
+        - BearerAuth:
+            - write:pets
+            - read:pets
   /v1/transaction:
     post:
       tags:
