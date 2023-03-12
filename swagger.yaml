@@ -143,6 +143,19 @@ paths:
         - BearerAuth:
             - write:pets
             - read:pets
+  /v1/merchants:
+    get:
+      tags:
+        - Merchant
+      summary: Merchant List
+      description: Get list of all Merchants with pagination
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantList'
   /v1/transaction:
     post:
       tags:
@@ -331,6 +344,22 @@ components:
         active:
           type: boolean
           example: true
+    MerchantList:
+      type: object
+      properties:
+        object:
+          type: string
+          example: merchant
+        pageSize:
+          type: integer
+          example: 10
+        page:
+          type: integer
+          example : 1
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Merchant'
     Transaction:
       type: object
       required:
