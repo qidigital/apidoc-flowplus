@@ -16,6 +16,11 @@ info:
     email: connect@qidigital.com
   version: 1.0.2
 servers:
+  - url: https://{serverName}.cryptogateway.net
+    variables:
+      serverName:
+        default: servername
+        description: serverName assigned by the service provider
   - url: https://{serverName}.qigateway.net
     variables:
       serverName:
